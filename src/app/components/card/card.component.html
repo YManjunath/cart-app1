@@ -1,0 +1,53 @@
+<!-- <div class="row">
+  <div *ngFor="let cart of cartList;" class="card col-md-6" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{cart.p_name}}</h5>
+      <p class="card-text">{{ cart.p_details}}</p>
+      <a href="#" class="btn btn-primary">Add Item</a>
+    </div>
+  </div>
+</div> -->
+<div style="display:flex;margin-top: 50px;margin-left: 300px;">
+  <div id="header_search">
+    <label style="padding-right: 12px;">Search for Items </label>
+    <input type="text" className="header_searchInput" [(ngModel)]="selectedItem" (input)="filterItems()" style="width: 725px;" />
+  </div>
+  <div class="column_1" *ngIf="finalItems && finalItems.length">
+    <div class="card">
+      <h3>My Cart</h3>
+      <div class="item-name_1" *ngFor="let name of finalItems">
+        <p>Item Name : {{ name.selectedItem }}</p>
+        <p>Quantity :</p>
+        <button id="plus" (click)="increment()">+</button>
+        <span id="number">{{ count }}</span>
+        <button id="minus" (click)="decrement()">-</button>
+      </div>
+      <h5 *ngFor="let name of finalItems" id="total">Total : {{ name.amount * this.count}}</h5>
+      <a href="#" class="btn btn-outline-primary primary add-btn">Buy</a>
+    </div>
+  </div>
+</div>
+<div id="no_items">
+    <h2 *ngIf="filteredItems.length == 0">No Items Found !!!😐 </h2>
+</div>
+<div class="row">
+
+  <div class="column" *ngFor="let cart of filteredItems;">
+    <div class="card">
+      <img class="card-image" src="{{ cart.p_image }}" alt="Card image cap">
+      <div class="item-name">
+        <h5>Item Name: {{cart.p_name}}</h5>
+        <h5>Quantity : {{ cart.p_quantity }} </h5>
+      </div>
+      <div class="item-name">
+        <h5>Item Cost: {{cart.p_cost}}</h5>
+        <h5>Item Availability : {{ cart.p_availability }} </h5>
+      </div>
+      <div class="item-details">
+        <h5>Item Details: {{ cart.p_details}}</h5>
+      </div>
+      <button class="btn btn-primary" (click)="addItem(cart.p_id)">Add Item</button>
+    </div>
+  </div>
+</div>
